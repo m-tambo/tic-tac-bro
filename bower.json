@@ -1,0 +1,20 @@
+{
+  "name": "tic-tac-bro",
+  "homepage": "https://github.com/m-tambo/tic-tac-bro",
+  "authors": [
+    "Michael Tambornino <michael.tambornino@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "firebase": "^3.6.7"
+  }
+}
