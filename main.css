@@ -1,0 +1,39 @@
+
+/*********************
+      BRO STYLES
+*********************/
+
+
+.bro-board {
+    margin-top: 5em;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.brow {
+    margin: 0 auto;
+    display         : flex;
+    flex-direction  : row;
+    justify-content: center;
+    width: 50%;
+}
+
+.bro-spot {
+    display : block;
+    border  : 1px solid #e4e4e4;
+
+}
+
+.bro-spot img {
+    height: 12em;
+    width: 12em;
+}
+
+.hidden-bro {
+    display: none;
+}
+
+.center-bro {
+    margin: 0 auto;
+}
