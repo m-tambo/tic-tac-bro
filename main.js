@@ -1,10 +1,3 @@
-firebase.initializeApp({
-  apiKey: "AIzaSyDbrdEUbUKKmbqtAjqtt-3IZQQBHpnqnR4",
-  authDomain: "tic-tac-bro-9746c.firebaseapp.com",
-  databaseURL: "https://tic-tac-bro-9746c.firebaseio.com",
-  storageBucket: "tic-tac-bro-9746c.appspot.com",
-  messagingSenderId: "7022810343"
-});
 
 const broBoard = document.querySelector('.bro-board');
 const broSpots = document.querySelectorAll('.bro-spot');
@@ -30,6 +23,12 @@ function initializeBros() {
   broSpots.forEach(function (broSpot) {
     const broClass = broSpot.classList[1];
     broSpotRef.update({[broClass] : 'images/bro.png'})
+
+    // Grab all currently connected Users
+    // Filter out the two Users that just finished playing so two new Users will be playing every time through
+    // Add key/value of { playing : true } to two random Users objects
+    // Add key/value of { playing : false } to the rest of the User objects
+    // Add function to test if each User is playing or not.  Only the two players with playing : true can click bro-board
   })
 }
 
@@ -66,8 +65,8 @@ broSpotRef.on('child_changed', snap => {
   //console.log(snap.val())
   //console.log(snap.key)
   document.querySelector('#' + snap.key).src = snap.val();
-  checkBros();
 
+  checkBros();
 });
 
 
