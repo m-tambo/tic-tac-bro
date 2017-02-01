@@ -1,2 +1,3 @@
-# tic-tac-bro
-game exercise with general commandant joint chief west
+# tic-tac-BRO
+
+### game exercise with general commandant joint chief west
