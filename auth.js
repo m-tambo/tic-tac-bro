@@ -35,13 +35,20 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 
 function ready(user) {
+  document.querySelector('.bro-btn').addEventListener('click', function (evt) {
+
+  broName = evt.target.previousElementSibling.value;
+
+  document.querySelector('.bro-input').classList.add('hidden-bro');
+  document.querySelector('.bro-btn').classList.add('hidden-bro');
+
   firebase.database().ref('Users/' + firebase.auth().currentUser.uid).onDisconnect().remove();
-  //button.addEventListener('click', () => {
     broUserRef.update({ [user.uid] :
-                          { ['broName'] :'James' }
+                          { ['broName'] : broName }
                       });
-  //})
+  });
 }
+
 
 
 

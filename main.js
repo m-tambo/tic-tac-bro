@@ -7,10 +7,13 @@ const broAgain = document.querySelector('.center-bro');
 let currentBro = 'images/broBilly.jpeg';
 const checkBro = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8 ], [0, 4, 8], [2, 4, 6]];
 const broSpotRef = firebase.database().ref().child('Bro-Spots');
-const broNameRef = firebase.database().ref().child('Users');
-let broName = ''
+let currentTurn = '';
+let broName = '';
+let player1 = '';
+let player2 = '';
+playerArray = [];
 
-// bro functions, DRY AF!
+  // bro functions, DRY AF!
 function checkBros() {
   const bros = document.querySelectorAll('img');
   for (let i = 0; i < checkBro.length; i++) {
@@ -37,43 +40,29 @@ function initializeBros() {
 }
 
 function broClick(e) {
-  console.log(e)
-  if (broName === '') {
-    alert("State your name to compete, bro")
-  } else {
-    if (e.target.attributes[0].value === 'images/bro.png') {
-      if (currentBro === 'images/broBilly.jpeg') {
-        currentBro = 'images/broLeggs.jpeg'
-      } else {
-        currentBro = 'images/broBilly.jpeg'
-      }
-      if (e.target.tagName === 'IMG') {
-        let broId = e.target.id;
-        broSpotRef.update({ [broId]: currentBro });
+  if(currentTurn === player1) {
+    currentTurn === player1 ? currentTurn = player2 : currentTurn = player1;
+    if (broName === '') {
+      alert("State your name to compete, bro")
+    } else {
+      if (e.target.attributes[0].value === 'images/bro.png') {
+        if (currentBro === 'images/broBilly.jpeg') {
+          currentBro = 'images/broLeggs.jpeg'
+        } else {
+          currentBro = 'images/broBilly.jpeg'
+        }
+        if (e.target.tagName === 'IMG') {
+          let broId = e.target.id;
+          broSpotRef.update({ [broId]: currentBro });
+        }
       }
     }
   }
 }
 
-function setBroName(evt) {
-  console.log(evt.target.previousElementSibling.value);
-  broName = evt.target.previousElementSibling.value;
-
-  // display name
-  document.querySelector('.bro1name').innerHTML = broName
-  document.querySelector('.bro1name').classList.remove('hidden-bro');
-
-  // hide text input and button
-  document.querySelector('.bro-input').classList.add('hidden-bro');
-  document.querySelector('.bro-btn').classList.add('hidden-bro');
-
-
-}
-
-
 // bro listeners
 broBoard.addEventListener('click', broClick);
-document.querySelector('.bro-btn').addEventListener('click', setBroName);
+
 
 
 
@@ -99,10 +88,17 @@ broSpotRef.on('child_changed', snap => {
 
 
 broUserRef.on('child_added', snap => {
-  console.log(snap.val())
-  console.log(snap.key)
-  const broUser = document.createElement('p');
-  broUser.innerHTML = 'Bro ' + snap.val().broName;
-  console.log(broUser)
+  //console.log(snap.val())
+  //console.log(snap.key)
+  //const broUser = document.createElement('p');
+  //broUser.innerHTML = 'Bro ' + snap.val().broName;
+  //console.log(broUser)
+  playerArray.push(snap.key);
+  player1 = playerArray[0];
+  player2 = playerArray[1];
+  currentTurn = playerArray[0];
+
+  document.querySelector('.bro1name').innerHTML = snap.val().broName;
+  document.querySelector('.bro1name').classList.remove('hidden-bro');
 });
 
