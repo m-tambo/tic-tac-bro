@@ -1,3 +1,7 @@
+.main-div {
+    display: flex;
+    justify-content: center;
+}
 
 /*********************
       BRO STYLES
@@ -36,4 +40,17 @@
 
 .center-bro {
     margin: 0 auto;
+}
+
+/*********************
+      BRO NAMES
+*********************/
+
+.bro1, .bro2 {
+    width: 25%;
+    display: flex;
+}
+
+.bro2name, .bro1name {
+    margin: 55% auto;
 }
