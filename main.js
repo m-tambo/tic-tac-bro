@@ -13,11 +13,8 @@ let player1 = '';
 let player2 = '';
 playerArray = [];
 
-<<<<<<< HEAD
-      // bro functions, DRY AF!
-=======
+
   // bro functions, DRY AF!
->>>>>>> a157c91d1b7f49241daebfc426f089f5018cf610
 function checkBros() {
   const bros = document.querySelectorAll('img');
   for (let i = 0; i < checkBro.length; i++) {
@@ -64,23 +61,8 @@ function broClick(e) {
   }
 }
 
-<<<<<<< HEAD
-function setBroName(evt) {
-  console.log(evt.target.previousElementSibling.value);
-  broName = evt.target.previousElementSibling.value;
-        // display name
-  document.querySelector('.bro1name').innerHTML = broName
-  document.querySelector('.bro1name').classList.remove('hidden-bro');
-        // hide text input and button
-  document.querySelector('.bro-input').classList.add('hidden-bro');
-  document.querySelector('.bro-btn').classList.add('hidden-bro');
-}
 
-
-        // bro listeners
-=======
 // bro listeners
->>>>>>> a157c91d1b7f49241daebfc426f089f5018cf610
 broBoard.addEventListener('click', broClick);
 
 
