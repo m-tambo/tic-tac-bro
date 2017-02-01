@@ -22,7 +22,7 @@ function initializeBros() {
   broAgain.classList.add('hidden-bro');
   broSpots.forEach(function (broSpot) {
     const broClass = broSpot.classList[1];
-    broSpotRef.update({[broClass] : 'images/bro.png'})
+    broSpotRef.update({[broClass] : 'images/bro.png'});
 
     // Grab all currently connected Users
     // Filter out the two Users that just finished playing so two new Users will be playing every time through
@@ -70,3 +70,10 @@ broSpotRef.on('child_changed', snap => {
 });
 
 
+broUserRef.on('child_added', snap => {
+  console.log(snap.val())
+  console.log(snap.key)
+  const broUser = document.createElement('p');
+  broUser.innerHTML = 'Bro ' + snap.val().broName;
+  console.log(broUser)
+});
