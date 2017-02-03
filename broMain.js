@@ -298,6 +298,7 @@ broSpotRef.on('child_changed', snap => {
 
 broUserRef.on('child_added', snap => {
   const broUserDiv = document.createElement('div');
+  console.log(snap.key, snap.val());
   broUserDiv.id = snap.key;
   const broUser = document.createElement('p');
   broUser.innerHTML = snap.val().broName;
