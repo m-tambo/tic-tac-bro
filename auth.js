@@ -7,7 +7,6 @@ firebase.initializeApp({
   messagingSenderId: "7022810343"
 });
 
-const broUserRef = firebase.database().ref().child('Users');
 
 firebase.auth().onAuthStateChanged(function(user) {
   console.log('USER', user);
@@ -16,7 +15,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     var isAnonymous = user.isAnonymous;
     var uid = user.uid;
     console.log(uid);
-    ready(user);
+    ready();
     // ...
   } else {
     firebase.auth().signInAnonymously();
@@ -34,19 +33,8 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 
 
-function ready(user) {
-  document.querySelector('.bro-btn').addEventListener('click', function (evt) {
-
-  broName = evt.target.previousElementSibling.value;
-
-  document.querySelector('.bro-input').classList.add('hidden-bro');
-  document.querySelector('.bro-btn').classList.add('hidden-bro');
-
-  firebase.database().ref('Users/' + firebase.auth().currentUser.uid).onDisconnect().remove();
-    broUserRef.update({ [user.uid] :
-                          { ['broName'] : broName }
-                      });
-  });
+function ready() {
+  document.querySelector('.bro-btn').addEventListener('click', initializeBro);
 }
 
 

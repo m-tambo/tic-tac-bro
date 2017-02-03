@@ -1,18 +1,25 @@
-.main-div {
-    display: flex;
-    justify-content: center;
-}
 
 /*********************
       BRO STYLES
 *********************/
 
-
-.bro-board {
+.bro-div {
     margin-top: 5em;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
 
+}
+
+.bro-chat {
+
+    display: flex;
+    flex-direction: column;
+}
+
+.bro-board {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
 }
 
 .brow {
@@ -34,23 +41,34 @@
     width: 12em;
 }
 
+.bro-again {
+    display: block;
+    margin: 0 auto;
+}
+
 .hidden-bro {
     display: none;
 }
 
-.center-bro {
+.container {
+    display: inline-block;
     margin: 0 auto;
 }
 
-/*********************
-      BRO NAMES
-*********************/
+.center-bro {
+    text-align: center;
+}
 
-.bro1, .bro2 {
-    width: 25%;
+.sign-in-bro {
+    width: 20%;
     display: flex;
+    flex-direction: column;
+    margin: 2em auto;
 }
 
-.bro2name, .bro1name {
-    margin: 55% auto;
+.info-bro {
+    display: flex;
+    flex-direction: column;
 }
+
+

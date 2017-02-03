@@ -7,46 +7,68 @@
 </head>
 <body>
 
-  <input type="text" class="bro-input" placeholder="What your bros call you">
-  <input type="button" class="bro-btn" value="Game on, bro!">
 
-  <div class="main-div">
+<!--<div class="sign-in-bro">-->
+  <!--<input type="text"  class="bro-input" placeholder="What your bros call you">-->
+  <!--<input type="button" class="bro-btn" value="Game on, bro!">-->
+<!--</div>-->
 
-    <div class="bro1">
-      <h4 class="bro1name hidden-bro">bro1</h4>
-    </div>
+<button class="bro-again hidden-bro center-bro">Ready for another Bro off Bro</button>
 
-    <div class="bro-board">
-      <div class="brow">
-        <span class="bro-spot bro-0"></span>
-        <span class="bro-spot bro-1"></span>
-        <span class="bro-spot bro-2"></span>
+
+  <div class="bro-div">
+
+
+    <div class="container">
+      <div class="info-bro">
+        <h5 class="status center-bro hidden-bro"></h5>
+        <h6 class="turn center-bro hidden-bro"></h6>
+        <input type="text"  class="bro-input" placeholder="What your bros call you">
+        <input type="button" class="bro-btn" value="Game on, bro!">
       </div>
-      <div class="brow">
-        <span class="bro-spot bro-3"></span>
-        <span class="bro-spot bro-4"></span>
-        <span class="bro-spot bro-5"></span>
-      </div>
-      <div class="brow">
-        <span class="bro-spot bro-6"></span>
-        <span class="bro-spot bro-7"></span>
-        <span class="bro-spot bro-8"></span>
+      <div class="other-bros">
+        <h5>Other Bro's Online!</h5>
       </div>
     </div>
 
-    <div class="bro2">
-      <h4 class="bro2name"></h4>
+
+    <div class="container">
+     <div class="bro-board">
+        <div class="brow">
+          <span class="bro-spot bro-0"></span>
+          <span class="bro-spot bro-1"></span>
+          <span class="bro-spot bro-2"></span>
+        </div>
+        <div class="brow">
+          <span class="bro-spot bro-3"></span>
+          <span class="bro-spot bro-4"></span>
+          <span class="bro-spot bro-5"></span>
+        </div>
+        <div class="brow">
+          <span class="bro-spot bro-6"></span>
+          <span class="bro-spot bro-7"></span>
+          <span class="bro-spot bro-8"></span>
+        </div>
+      </div>
     </div>
+
+
+    <div class="container">
+        <input type="text" name="message" class="bro-talk hidden-bro">
+        <input class="bro-comm hidden-bro" type="button" value="send Bro-message">
+      <div class="bro-chat">
+      </div>
+    </div>
+
 
   </div>
 
-    <button class="hidden-bro center-bro">Ready for another Bro off Bro</button>
 
 
 
 
   <script src="/bower_components/firebase/firebase.js"></script>
   <script src="auth.js"></script>
-  <script src="main.js"></script>
+  <script src="secondtry.js"></script>
 </body>
 </html>
