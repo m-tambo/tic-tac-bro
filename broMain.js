@@ -99,7 +99,7 @@ function newBroPlayers() {
     });
 
     let firstNewBro = Math.floor(Math.random() * ((totalBros - 1) - 0)) + 0;
-    let SecondNewBro = Math.floor(Math.random() * ((totalBros - 1) - 0)) + 0;g
+    let SecondNewBro = Math.floor(Math.random() * ((totalBros - 1) - 0)) + 0;
     if(firstNewBro === SecondNewBro) {
 
     }
@@ -121,7 +121,7 @@ function newBroPlayers() {
 function resetBros() {
 
   newBroPlayers();
-  broSpotRef.update({ 'startBro' : startBro });
+  broSpotRef.update({ 'startBro' : (Math.floor(Math.random() * (100000))) });
   broAgain.classList.add('hidden-bro');
   broBoard.addEventListener('click', broClick);
   broSpots.forEach(function (broSpot) {
