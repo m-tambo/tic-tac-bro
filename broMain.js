@@ -7,9 +7,11 @@ const broComm = document.querySelector('.bro-comm');
 const broChatDiv = document.querySelector('.bro-chat');
 const broFriends = document.querySelector('.other-bros')
 const checkBro = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8 ], [0, 4, 8], [2, 4, 6]];
+
 const broSpotRef = firebase.database().ref().child('Bro-Spots');
 const broUserRef = firebase.database().ref().child('Users');
 const broMessageRef = firebase.database().ref().child('Messages');
+
 let currentBro = 'images/broBilly.jpeg';
 let player1 = '';
 let player2 = '';
@@ -78,50 +80,50 @@ function checkBros() {
 
       broBoard.removeEventListener('click', broClick);
       broAgain.classList.remove('hidden-bro');
-      startBro = 'yes';
       broAgain.addEventListener('click', resetBros);
     }
   }
 }
 
 
-function newBroPlayers() {
-  broUserRef.once('value', snap => {
-    const bros = snap.val();
-    const totalBros = snap.numChildren();
+//function newBroPlayers() {
+//  broUserRef.once('value', snap => {
+//    const bros = snap.val();
 
-    Object.keys(bros).forEach(function (id) {
-
-      if (id === player1 || id === player2) {
-        delete bros[id];
-
-      }
-    });
-
-    let firstNewBro = Math.floor(Math.random() * ((totalBros - 1) - 0)) + 0;
-    let SecondNewBro = Math.floor(Math.random() * ((totalBros - 1) - 0)) + 0;
-    if(firstNewBro === SecondNewBro) {
-
-    }
-    Object.keys(bros).forEach(function (id, i) {
-      if(i === firstNewBro) {
-        firstNewBro = id;
-      }
-      if(i === SecondNewBro) {
-        SecondNewBro = id;
-      }
-    })
-
-    broSpotRef.update({ 'player1' : firstNewBro });
-    broSpotRef.update({ 'player2' : SecondNewBro });
-
-  });
-}
+//    const totalBros = snap.numChildren();
+//
+//    Object.keys(bros).forEach(function (id) {
+//
+//      if (id === player1 || id === player2) {
+//        delete bros[id];
+//
+//      }
+//    });
+//
+//    let firstNewBro = Math.floor(Math.random() * ((totalBros - 1) - 0)) + 0;
+//    let SecondNewBro = Math.floor(Math.random() * ((totalBros - 1) - 0)) + 0;
+//    if(firstNewBro === SecondNewBro) {
+//
+//    }
+//    Object.keys(bros).forEach(function (id, i) {
+//      if(i === firstNewBro) {
+//        firstNewBro = id;
+//      }
+//      if(i === SecondNewBro) {
+//        SecondNewBro = id;
+//      }
+//    })
+//
+//    broSpotRef.update({ 'player1' : firstNewBro });
+//    broSpotRef.update({ 'player2' : SecondNewBro });
+//
+//  });
+//}
 
 function resetBros() {
-
-  newBroPlayers();
-  broSpotRef.update({ 'startBro' : (Math.floor(Math.random() * (100000))) });
+  //newBroPlayers()
+console.log(startBro)
+  broSpotRef.update({ 'startBro' : (startBro++) });
   broAgain.classList.add('hidden-bro');
   broBoard.addEventListener('click', broClick);
   broSpots.forEach(function (broSpot) {
@@ -216,12 +218,16 @@ broSpotRef.on('child_added', snap => {
 
 
   if(snap.key === 'player1') {
+    broSpotRef.child('player1').onDisconnect().remove();
     player1 = snap.val();
+    broSpotRef.update({ ['currentTurn'] : player1 });
     whoPlayingBro();
   }
 
   if(snap.key === 'player2') {
+    broSpotRef.child('player2').onDisconnect().remove();
     player2 = snap.val();
+    broSpotRef.update({ ['currentTurn'] : player2 });
     whoPlayingBro();
   }
 
@@ -259,8 +265,8 @@ broSpotRef.on('child_changed', snap => {
   }
 
   if(snap.key === 'startBro') {
-    resetBros();
     startBro = snap.val();
+    resetBros();
   }
 
   if (snap.val() === 'images/bro.png' || snap.val() === 'images/broBilly.jpeg' || snap.val() === 'images/broLeggs.jpeg') {
@@ -275,10 +281,21 @@ broSpotRef.on('child_changed', snap => {
 broSpotRef.on('child_removed', snap => {
 
   if(snap.key === 'player1' || snap.key === 'player2') {
-    //broSpotRef.update({ [snap.key] :  })
-  }
+    broUserRef.once('value', snap => {
+      const bros = snap.val();
+      const broName = snap.key;
+    const totalBros = snap.numChildren();
+    let NewBro = Math.floor(Math.random() * ((totalBros - 1)));
+      Object.keys(bros).forEach(function (id, i) {
+        if (i === NewBro) {
+          NewBro = id;
+        }
+      })
+    broSpotRef.update({ [broName]: NewBro })
 
-})
+  })
+  }
+});
 
 
 broUserRef.on('child_added', snap => {
