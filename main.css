@@ -2,6 +2,10 @@
 /*********************
       BRO STYLES
 *********************/
+body {
+    font-family: 'Coda Caption', serif;
+
+}
 
 .bro-div {
     margin-top: 5em;
@@ -71,4 +75,7 @@
     flex-direction: column;
 }
 
-
+.status {
+    padding: 2px;
+    border: solid cadetblue 2px;
+}
