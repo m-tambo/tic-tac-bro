@@ -250,12 +250,12 @@ broSpotRef.on('child_changed', snap => {
   if(snap.key === 'player1') {
     player1 = snap.val();
     broSpotRef.update({ 'currentTurn' : snap.val()})
-    whoPlayingBro
+    whoPlayingBro();
   }
 
   if(snap.key === 'player2') {
     player2 = snap.val();
-    whoPlayingBro
+    whoPlayingBro();
   }
 
   if(snap.key === 'startBro') {
