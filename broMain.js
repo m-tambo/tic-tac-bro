@@ -14,8 +14,8 @@ let currentBro = 'images/broBilly.jpeg';
 let player1 = '';
 let player2 = '';
 let currentTurn = '';
-let StartBro = '';
-let i = '';
+let startBro = '';
+
 
 // listen bro
 broBoard.addEventListener('click', broClick);
@@ -47,7 +47,7 @@ function initializeBro(evt) {
 
     currentTurn = snap.val().currentTurn;
     currentBro = snap.val().currentBro;
-    i = snap.val().startBro;
+    startBro = snap.val().startBro;
 
     if(!snap.hasChild('player1')) {
       player1 = firebase.auth().currentUser.uid;
@@ -78,6 +78,7 @@ function checkBros() {
 
       broBoard.removeEventListener('click', broClick);
       broAgain.classList.remove('hidden-bro');
+      startBro = 'yes';
       broAgain.addEventListener('click', resetBros);
     }
   }
@@ -121,7 +122,7 @@ function newBroPlayers() {
 function resetBros() {
 
   newBroPlayers();
-  broSpotRef.update({ 'startBro' : i + 1 });
+  broSpotRef.update({ 'startBro' : startBro });
   broAgain.classList.add('hidden-bro');
   broBoard.addEventListener('click', broClick);
   broSpots.forEach(function (broSpot) {
@@ -259,7 +260,8 @@ broSpotRef.on('child_changed', snap => {
   }
 
   if(snap.key === 'startBro') {
-    i = snap.val();
+    resetBros();
+    startBro = snap.val();
   }
 
   if (snap.val() === 'images/bro.png' || snap.val() === 'images/broBilly.jpeg' || snap.val() === 'images/broLeggs.jpeg') {
