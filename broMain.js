@@ -96,27 +96,26 @@ function newBroPlayers() {
         delete bros[id];
 
       }
+    });
+
+    let firstNewBro = Math.floor(Math.random() * ((totalBros - 1) - 0)) + 0;
+    let SecondNewBro = Math.floor(Math.random() * ((totalBros - 1) - 0)) + 0;g
+    if(firstNewBro === SecondNewBro) {
+
+    }
+    Object.keys(bros).forEach(function (id, i) {
+      if(i === firstNewBro) {
+        firstNewBro = id;
+      }
+      if(i === SecondNewBro) {
+        SecondNewBro = id;
+      }
     })
-      let firstNewBro = Math.floor(Math.random() * ((totalBros - 1) - 0)) + 0;
-      let SecondNewBro = Math.floor(Math.random() * ((totalBros - 1) - 0)) + 0;
 
-      Object.keys(bros).forEach(function (id, i) {
-        if(i === firstNewBro) {
-          firstNewBro = id;
-        }
-        if(i === SecondNewBro) {
-          SecondNewBro = id;
-        }
-      })
-      broSpotRef.update({ 'player1' : firstNewBro });
-      broSpotRef.update({ 'player2' : SecondNewBro });
+    broSpotRef.update({ 'player1' : firstNewBro });
+    broSpotRef.update({ 'player2' : SecondNewBro });
+
   });
-
-    // Filter out the two Users that just finished playing so two new Users will be playing every time through
-    // Add key/value of { playing : true } to two random Users objects
-    // Add key/value of { playing : false } to the rest of the User objects
-    // Add function to test if each User is playing or not.  Only the two players with playing : true can click bro-board
-
 }
 
 function resetBros() {
