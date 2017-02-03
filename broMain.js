@@ -46,7 +46,7 @@ function initializeBro(evt) {
                     });
 
   broSpotRef.once('value', snap => {
-
+console.log(snap)
     currentTurn = snap.val().currentTurn;
     currentBro = snap.val().currentBro;
     startBro = snap.val().startBro;
@@ -218,14 +218,12 @@ broSpotRef.on('child_added', snap => {
 
 
   if(snap.key === 'player1') {
-    broSpotRef.child('player1').onDisconnect().remove();
     player1 = snap.val();
     broSpotRef.update({ ['currentTurn'] : player1 });
     whoPlayingBro();
   }
 
   if(snap.key === 'player2') {
-    broSpotRef.child('player2').onDisconnect().remove();
     player2 = snap.val();
     broSpotRef.update({ ['currentTurn'] : player2 });
     whoPlayingBro();
@@ -255,7 +253,7 @@ broSpotRef.on('child_changed', snap => {
 
   if(snap.key === 'player1') {
     player1 = snap.val();
-    broSpotRef.update({ 'currentTurn' : snap.val()})
+    broSpotRef.update({ 'currentTurn' : snap.val()});
     whoPlayingBro();
   }
 
@@ -278,24 +276,24 @@ broSpotRef.on('child_changed', snap => {
 });
 
 
-broSpotRef.on('child_removed', snap => {
-
-  if(snap.key === 'player1' || snap.key === 'player2') {
-    broUserRef.once('value', snap => {
-      const bros = snap.val();
-      const broName = snap.key;
-    const totalBros = snap.numChildren();
-    let NewBro = Math.floor(Math.random() * ((totalBros - 1)));
-      Object.keys(bros).forEach(function (id, i) {
-        if (i === NewBro) {
-          NewBro = id;
-        }
-      })
-    broSpotRef.update({ [broName]: NewBro })
-
-  })
-  }
-});
+//broSpotRef.on('child_removed', snap => {
+//
+//  if(snap.key === 'player1' || snap.key === 'player2') {
+//    broUserRef.once('value', snap => {
+//      const bros = snap.val();
+//      const broName = snap.key;
+//    const totalBros = snap.numChildren();
+//    let NewBro = Math.floor(Math.random() * ((totalBros - 1)));
+//      Object.keys(bros).forEach(function (id, i) {
+//        if (i === NewBro) {
+//          NewBro = id;
+//        }
+//      })
+//    broSpotRef.update({ [broName]: NewBro })
+//
+//  })
+//  }
+//});
 
 
 broUserRef.on('child_added', snap => {
